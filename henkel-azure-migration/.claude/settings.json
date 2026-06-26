@@ -1,0 +1,53 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-tf-change.sh",
+            "condition": ".*\\.tf$"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/helm-lint.sh",
+            "condition": ".*(Chart\\.yaml|values.*\\.yaml)$"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-kustomize-change.sh",
+            "condition": ".*kustomization\\.yaml$"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-commit-scan.sh",
+            "condition": "git (commit|push)"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-push-adr-check.sh",
+            "condition": "git push"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/show-context.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

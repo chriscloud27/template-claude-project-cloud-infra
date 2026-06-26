@@ -1,0 +1,37 @@
+# Terraform state and cache
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Downloaded Helm dependencies
+charts/
+
+# Node and Python
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Git and VCS
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and temps
+*.log
+/tmp/
+/temp/
+dist/
+build/
